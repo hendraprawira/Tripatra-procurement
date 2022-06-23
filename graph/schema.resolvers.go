@@ -7,8 +7,8 @@ import (
 	"context"
 
 	"github.com/Farishadibrata/golang-furniture/database"
-	"github.com/Farishadibrata/golang-furniture/graph/generated"
-	"github.com/Farishadibrata/golang-furniture/graph/model"
+	"github.com/hendraprawira/Tripatra-procurement/graph/generated"
+	"github.com/hendraprawira/Tripatra-procurement/graph/model"
 )
 
 func (r *authOpsResolver) Login(ctx context.Context, obj *model.AuthOps, creds model.CredsLogin) (interface{}, error) {
