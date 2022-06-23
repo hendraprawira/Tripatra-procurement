@@ -6,7 +6,7 @@ package graph
 import (
 	"context"
 
-	"github.com/Farishadibrata/golang-furniture/database"
+	"github.com/hendraprawira/Tripatra-procurement/database"
 	"github.com/hendraprawira/Tripatra-procurement/graph/generated"
 	"github.com/hendraprawira/Tripatra-procurement/graph/model"
 )

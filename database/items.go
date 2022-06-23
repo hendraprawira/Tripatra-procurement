@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/Farishadibrata/golang-furniture/graph/model"
+	"github.com/hendraprawira/Tripatra-procurement/graph/model"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

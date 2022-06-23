@@ -1,6 +1,6 @@
 package graph
 
-import "github.com/Farishadibrata/golang-furniture/graph/model"
+import "github.com/hendraprawira/Tripatra-procurement/graph/model"
 
 // This file will not be regenerated automatically.
 //

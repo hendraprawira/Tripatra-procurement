@@ -5,12 +5,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/99designs/gqlgen/example/federation/accounts/graph"
-	"github.com/99designs/gqlgen/example/starwars/generated"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gorilla/mux"
 	"github.com/hendraprawira/Tripatra-procurement/directives"
+	"github.com/hendraprawira/Tripatra-procurement/graph"
+	"github.com/hendraprawira/Tripatra-procurement/graph/generated"
+	middlewares "github.com/hendraprawira/Tripatra-procurement/middleware"
 )
 
 const defaultPort = "3000"
