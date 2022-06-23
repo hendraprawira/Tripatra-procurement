@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/99designs/gqlgen/graphql"
-	middlewares "github.com/Farishadibrata/golang-furniture/middleware"
+	middlewares "github.com/hendraprawira/Tripatra-procurement/middleware"
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )
 
