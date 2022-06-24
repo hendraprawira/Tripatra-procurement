@@ -15,7 +15,7 @@ import (
 
 func (db *DB) CreateUser(input model.NewUser) *model.User {
 	print("Here")
-	collection := db.client.Database("tripartafurniture").Collection("users")
+	collection := db.client.Database("procurementTripatra").Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	input.Password = tools.HashPassword(input.Password)
@@ -31,7 +31,7 @@ func (db *DB) CreateUser(input model.NewUser) *model.User {
 }
 
 func (db *DB) GetByEmail(email string) *model.User {
-	collection := db.client.Database("tripartafurniture").Collection("users")
+	collection := db.client.Database("procurementTripatra").Collection("users")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	res := collection.FindOne(ctx, bson.M{"email": email})

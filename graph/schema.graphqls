@@ -28,27 +28,27 @@ type AuthOps {
 
 type Item {
   id: ID!
-  name: String!
-  style: String!
+  name_item: String!
+  stock: Int!
   description: String!
   price: Int!
-  deliveryDays: Int!
+  qty: Int!
 }
 
 input FilterItem {
-  name: String
-  style: String
+  name_item: String
+  stock: Int
   description: String
   price: Int
-  deliveryDays: Int
+  qty: Int
 }
 
 input NewItem {
-  name: String!
-  style: String!
+  name_item: String!
+  stock: Int!
   description: String!
   price: Int!
-  deliveryDays: Int!
+  qty: Int!
 }
 
 input credsLogin {

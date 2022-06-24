@@ -18,13 +18,13 @@ type DB struct {
 	client *mongo.Client
 }
 
-type EmailCreds struct {
-	host         string
-	port         int
-	senderName   string
-	authEmail    string
-	authPassword string
-}
+// type EmailCreds struct {
+// 	host         string
+// 	port         int
+// 	senderName   string
+// 	authEmail    string
+// 	authPassword string
+// }
 
 func goDotEnvVariable(key string) string {
 	err := godotenv.Load(".env")
@@ -48,7 +48,7 @@ func Connect() *DB {
 }
 
 func (db *DB) Save(input model.NewItem) *model.Item {
-	collection := db.client.Database("tripartafurniture").Collection("items")
+	collection := db.client.Database("procurementTripatra").Collection("items")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	res, err := collection.InsertOne(ctx, input)
@@ -57,10 +57,11 @@ func (db *DB) Save(input model.NewItem) *model.Item {
 	}
 	return &model.Item{
 		ID:          res.InsertedID.(primitive.ObjectID).Hex(),
-		Name:        input.Name,
-		Style:       input.Style,
+		NameItem:    input.NameItem,
+		Stock:       input.Stock,
 		Description: input.Description,
 		Price:       input.Price,
+		Qty:         input.Qty,
 	}
 
 }
@@ -70,7 +71,7 @@ func (db *DB) Delete(ID string) *bool {
 	if err != nil {
 		log.Fatal(err)
 	}
-	collection := db.client.Database("tripartafurniture").Collection("items")
+	collection := db.client.Database("procurementTripatra").Collection("items")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	_, error := collection.DeleteOne(ctx, bson.M{"_id": ObjectID})
@@ -97,16 +98,13 @@ func (db *DB) FindByID(ID string) *model.Item {
 }
 
 func (db *DB) Find(input *model.FilterItem) []*model.Item {
-	collection := db.client.Database("tripartafurniture").Collection("items")
+	collection := db.client.Database("procurementTripatra").Collection("items")
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 	findQuery := bson.M{}
 
-	if input.Name != nil {
-		findQuery["name"] = input.Name
-	}
-	if input.Style != nil {
-		findQuery["style"] = input.Style
+	if input.NameItem != nil {
+		findQuery["NameItem"] = input.NameItem
 	}
 	cur, err := collection.Find(ctx, findQuery)
 	if err != nil {

@@ -8,28 +8,28 @@ type AuthOps struct {
 }
 
 type FilterItem struct {
-	Name         *string `json:"name" bson:"name"`
-	Style        *string `json:"style" bson:"style"`
-	Description  *string `json:"description" bson:"description"`
-	Price        *int    `json:"price" bson:"price"`
-	DeliveryDays *int    `json:"deliveryDays" bson:"deliveryDays"`
+	NameItem    *string `json:"name_item" bson:"name_item"`
+	Stock       *int    `json:"stock" bson:"stock"`
+	Description *string `json:"description" bson:"description"`
+	Price       *int    `json:"price" bson:"price"`
+	Qty         *int    `json:"qty" bson:"qty"`
 }
 
 type Item struct {
-	ID           string `json:"id" bson:"_id"`
-	Name         string `json:"name" bson:"name"`
-	Style        string `json:"style" bson:"style"`
-	Description  string `json:"description" bson:"description"`
-	Price        int    `json:"price" bson:"price"`
-	DeliveryDays int    `json:"deliveryDays" bson:"deliveryDays"`
+	ID          string `json:"id" bson:"_id"`
+	NameItem    string `json:"name_item" bson:"name_item"`
+	Stock       int    `json:"stock" bson:"stock"`
+	Description string `json:"description" bson:"description"`
+	Price       int    `json:"price" bson:"price"`
+	Qty         int    `json:"qty" bson:"qty"`
 }
 
 type NewItem struct {
-	Name         string `json:"name" bson:"name"`
-	Style        string `json:"style" bson:"style"`
-	Description  string `json:"description" bson:"description"`
-	Price        int    `json:"price" bson:"price"`
-	DeliveryDays int    `json:"deliveryDays" bson:"deliveryDays"`
+	NameItem    string `json:"name_item" bson:"name_item"`
+	Stock       int    `json:"stock" bson:"stock"`
+	Description string `json:"description" bson:"description"`
+	Price       int    `json:"price" bson:"price"`
+	Qty         int    `json:"qty" bson:"qty"`
 }
 
 type NewUser struct {
