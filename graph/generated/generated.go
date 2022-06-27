@@ -56,7 +56,6 @@ type ComplexityRoot struct {
 		ID          func(childComplexity int) int
 		NameItem    func(childComplexity int) int
 		Price       func(childComplexity int) int
-		Qty         func(childComplexity int) int
 		Stock       func(childComplexity int) int
 	}
 
@@ -159,13 +158,6 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Item.Price(childComplexity), true
-
-	case "Item.qty":
-		if e.complexity.Item.Qty == nil {
-			break
-		}
-
-		return e.complexity.Item.Qty(childComplexity), true
 
 	case "Item.stock":
 		if e.complexity.Item.Stock == nil {
@@ -363,7 +355,6 @@ type Item {
   stock: Int!
   description: String!
   price: Int!
-  qty: Int!
 }
 
 input FilterItem {
@@ -371,7 +362,6 @@ input FilterItem {
   stock: Int
   description: String
   price: Int
-  qty: Int
 }
 
 input NewItem {
@@ -379,7 +369,6 @@ input NewItem {
   stock: Int!
   description: String!
   price: Int!
-  qty: Int!
 }
 
 input credsLogin {
@@ -878,50 +867,6 @@ func (ec *executionContext) fieldContext_Item_price(ctx context.Context, field g
 	return fc, nil
 }
 
-func (ec *executionContext) _Item_qty(ctx context.Context, field graphql.CollectedField, obj *model.Item) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Item_qty(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Qty, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(int)
-	fc.Result = res
-	return ec.marshalNInt2int(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Item_qty(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Item",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Int does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
 func (ec *executionContext) _Mutation_createItem(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Mutation_createItem(ctx, field)
 	if err != nil {
@@ -971,8 +916,6 @@ func (ec *executionContext) fieldContext_Mutation_createItem(ctx context.Context
 				return ec.fieldContext_Item_description(ctx, field)
 			case "price":
 				return ec.fieldContext_Item_price(ctx, field)
-			case "qty":
-				return ec.fieldContext_Item_qty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Item", field.Name)
 		},
@@ -1162,8 +1105,6 @@ func (ec *executionContext) fieldContext_Query_items(ctx context.Context, field 
 				return ec.fieldContext_Item_description(ctx, field)
 			case "price":
 				return ec.fieldContext_Item_price(ctx, field)
-			case "qty":
-				return ec.fieldContext_Item_qty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Item", field.Name)
 		},
@@ -1251,8 +1192,6 @@ func (ec *executionContext) fieldContext_Query_item(ctx context.Context, field g
 				return ec.fieldContext_Item_description(ctx, field)
 			case "price":
 				return ec.fieldContext_Item_price(ctx, field)
-			case "qty":
-				return ec.fieldContext_Item_qty(ctx, field)
 			}
 			return nil, fmt.Errorf("no field named %q was found under type Item", field.Name)
 		},
@@ -3387,14 +3326,6 @@ func (ec *executionContext) unmarshalInputFilterItem(ctx context.Context, obj in
 			if err != nil {
 				return it, err
 			}
-		case "qty":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("qty"))
-			it.Qty, err = ec.unmarshalOInt2ᚖint(ctx, v)
-			if err != nil {
-				return it, err
-			}
 		}
 	}
 
@@ -3439,14 +3370,6 @@ func (ec *executionContext) unmarshalInputNewItem(ctx context.Context, obj inter
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("price"))
 			it.Price, err = ec.unmarshalNInt2int(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "qty":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("qty"))
-			it.Qty, err = ec.unmarshalNInt2int(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3636,13 +3559,6 @@ func (ec *executionContext) _Item(ctx context.Context, sel ast.SelectionSet, obj
 		case "price":
 
 			out.Values[i] = ec._Item_price(ctx, field, obj)
-
-			if out.Values[i] == graphql.Null {
-				invalids++
-			}
-		case "qty":
-
-			out.Values[i] = ec._Item_qty(ctx, field, obj)
 
 			if out.Values[i] == graphql.Null {
 				invalids++

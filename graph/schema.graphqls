@@ -32,7 +32,6 @@ type Item {
   stock: Int!
   description: String!
   price: Int!
-  qty: Int!
 }
 
 input FilterItem {
@@ -40,7 +39,6 @@ input FilterItem {
   stock: Int
   description: String
   price: Int
-  qty: Int
 }
 
 input NewItem {
@@ -48,7 +46,6 @@ input NewItem {
   stock: Int!
   description: String!
   price: Int!
-  qty: Int!
 }
 
 input credsLogin {

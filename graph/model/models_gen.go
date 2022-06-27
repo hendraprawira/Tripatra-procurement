@@ -12,7 +12,6 @@ type FilterItem struct {
 	Stock       *int    `json:"stock" bson:"stock"`
 	Description *string `json:"description" bson:"description"`
 	Price       *int    `json:"price" bson:"price"`
-	Qty         *int    `json:"qty" bson:"qty"`
 }
 
 type Item struct {
@@ -21,7 +20,6 @@ type Item struct {
 	Stock       int    `json:"stock" bson:"stock"`
 	Description string `json:"description" bson:"description"`
 	Price       int    `json:"price" bson:"price"`
-	Qty         int    `json:"qty" bson:"qty"`
 }
 
 type NewItem struct {
@@ -29,7 +27,6 @@ type NewItem struct {
 	Stock       int    `json:"stock" bson:"stock"`
 	Description string `json:"description" bson:"description"`
 	Price       int    `json:"price" bson:"price"`
-	Qty         int    `json:"qty" bson:"qty"`
 }
 
 type NewUser struct {

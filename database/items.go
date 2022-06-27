@@ -61,7 +61,6 @@ func (db *DB) Save(input model.NewItem) *model.Item {
 		Stock:       input.Stock,
 		Description: input.Description,
 		Price:       input.Price,
-		Qty:         input.Qty,
 	}
 
 }
