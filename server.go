@@ -39,5 +39,5 @@ func main() {
 	router.Handle("/assets", staticHandler)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
 }
