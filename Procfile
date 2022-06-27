@@ -1,1 +1,1 @@
-web: tripatra-procurement
+web: go run server.go
