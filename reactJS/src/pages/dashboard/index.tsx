@@ -11,9 +11,9 @@ import { gql, GraphQLClient } from "graphql-request";
 import { useState } from "react";
 import { QueryObserverResult, RefetchOptions, RefetchQueryFilters, useMutation, useQuery } from "react-query";
 import { CardWithStats } from "./card.component";
-import CreateFurniture from "./createFurniture.component";
+import CreateFurniture from "./createProcurement.component";
 import { HeaderResponsive } from "./header.component";
-import ListFurniture from "./listFurniture.component";
+import ListFurniture from "./listProcurement.component";
 
 interface FurniturePage {
   checkLogin: () => void;
