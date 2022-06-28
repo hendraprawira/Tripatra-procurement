@@ -27,7 +27,7 @@ interface LoginPage extends Pages {
 }
 
 const LoginPage = ({ setPage, setIsLoggedIn, checkLogin }: LoginPage) => {
-  const client = new GraphQLClient("/gql/query");
+  const client = new GraphQLClient("/gql/query/");
 
   const { mutate: loginMutation } = useMutation(
     async (auth: loginCreds) => {

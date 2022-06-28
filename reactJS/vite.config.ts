@@ -6,7 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/gql' : {
-        target: 'http://localhost:3000',
+        // target: 'http://localhost:3000',
+        target: 'https://tripatra-procurement.herokuapp.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/gql/, '')
       }
