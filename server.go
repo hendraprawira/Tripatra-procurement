@@ -32,12 +32,14 @@ func main() {
 
 	buildHandler := http.FileServer(http.Dir("./app-web/dist/"))
 	staticHandler := http.StripPrefix("/assets/", http.FileServer(http.Dir("./app-web/dist/assets")))
+	reactHandler := http.StripPrefix("/react/", http.FileServer(http.Dir("./reactJS/dist")))
 
 	router.Handle("/playground", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", srv)
 	router.Handle("/", buildHandler)
 	router.Handle("/assets", staticHandler)
+	router.Handle("/react", reactHandler)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
